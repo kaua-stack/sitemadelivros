@@ -1,0 +1,162 @@
+{
+  "formatos": {
+    "a5": {
+      "nome": "A5 (148 x 210 mm)",
+      "preco_base": 5.00
+    },
+    "a4": {
+      "nome": "A4 (210 x 297 mm)",
+      "preco_base": 8.00
+    },
+    "14x21": {
+      "nome": "14 x 21 cm",
+      "preco_base": 6.00
+    },
+    "personalizado": {
+      "nome": "Personalizado",
+      "preco_base": 10.00
+    }
+  },
+  "capas": {
+    "comum": {
+      "nome": "Capa Comum",
+      "preco": 3.50
+    },
+    "dura": {
+      "nome": "Capa Dura",
+      "preco": 12.00
+    }
+  },
+  "adicionais_capa": {
+    "laminacao-fosca": {
+      "nome": "Laminação Fosca",
+      "preco": 2.50
+    },
+    "laminacao-brilho": {
+      "nome": "Laminação Brilho",
+      "preco": 2.00
+    },
+    "verniz-localizado": {
+      "nome": "Verniz Localizado",
+      "preco": 3.50,
+      "min_quantidade": 100
+    },
+    "hot-stamping": {
+      "nome": "Hot Stamping",
+      "preco": 4.00
+    },
+    "corte-especial": {
+      "nome": "Corte Especial",
+      "preco": 5.00
+    }
+  },
+  "acabamentos": {
+    "brochura": {
+      "nome": "Brochura",
+      "preco": 2.00,
+      "min_paginas": 48,
+      "max_paginas": null
+    },
+    "grampo": {
+      "nome": "Grampo",
+      "preco": 1.00,
+      "min_paginas": null,
+      "max_paginas": 72
+    },
+    "wire-o": {
+      "nome": "Wire-o",
+      "preco": 3.50,
+      "min_paginas": null,
+      "max_paginas": null
+    },
+    "espiral": {
+      "nome": "Espiral Plástico",
+      "preco": 2.50,
+      "min_paginas": null,
+      "max_paginas": null
+    }
+  },
+  "papeis": {
+    "offset": {
+      "nome": "Offset",
+      "gramaturas": {
+        "75": {
+          "nome": "75g",
+          "preco_pb": 0.08,
+          "preco_color": 0.45
+        },
+        "90": {
+          "nome": "90g",
+          "preco_pb": 0.10,
+          "preco_color": 0.50
+        },
+        "115": {
+          "nome": "115g",
+          "preco_pb": 0.12,
+          "preco_color": 0.55
+        },
+        "150": {
+          "nome": "150g",
+          "preco_pb": 0.15,
+          "preco_color": 0.60
+        }
+      }
+    },
+    "polen": {
+      "nome": "Pólen",
+      "gramaturas": {
+        "75": {
+          "nome": "75g",
+          "preco_pb": 0.10,
+          "preco_color": 0.50
+        },
+        "90": {
+          "nome": "90g",
+          "preco_pb": 0.12,
+          "preco_color": 0.55
+        }
+      }
+    },
+    "couche": {
+      "nome": "Couchê",
+      "gramaturas": {
+        "90": {
+          "nome": "90g",
+          "preco_pb": 0.12,
+          "preco_color": 0.60
+        },
+        "115": {
+          "nome": "115g",
+          "preco_pb": 0.15,
+          "preco_color": 0.65
+        },
+        "150": {
+          "nome": "150g",
+          "preco_pb": 0.18,
+          "preco_color": 0.70
+        }
+      }
+    }
+  },
+  "servicos": {
+    "diagramacao": {
+      "nome": "Diagramação simples",
+      "preco": 350.00
+    },
+    "criacao-capa": {
+      "nome": "Criação de capa",
+      "preco": 180.00
+    },
+    "prova-impressa": {
+      "nome": "Prova impressa (boneco)",
+      "preco": 120.00
+    }
+  },
+  "descontos_quantidade": {
+    "100": 0,
+    "200": 0.05,
+    "500": 0.10,
+    "1000": 0.15,
+    "2000": 0.20
+  }
+}

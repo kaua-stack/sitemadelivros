@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Orçamento de Livros Personalizados</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="placeholder.svg?height=60&width=180" alt="Logo da Empresa">
+        </div>
+    </header>
+
+    <main>
+        <h1>Monte seu Livro Personalizado</h1>
+        
+        <div class="progress-container">
+            <ul class="progress-steps">
+                <li class="active" data-step="1">1. Formato</li>
+                <li data-step="2">2. Capa</li>
+                <li data-step="3">3. Acabamento</li>
+                <li data-step="4">4. Miolo</li>
+                <li data-step="5">5. Serviços</li>
+                <li data-step="6">6. Arquivos</li>
+                <li data-step="7">7. Frete</li>
+            </ul>
+        </div>
+
+        <div class="calculator-container">
+            <div class="calculator-form">
+                <!-- Seção 1: Formato do Livro -->
+                <section id="step-1" class="step active">
+                    <h2>Formato do Livro</h2>
+                    <div class="form-group">
+                        <label for="tamanho">Tamanho:</label>
+                        <select id="tamanho" name="tamanho">
+                            <option value="a5">A5 (148 x 210 mm)</option>
+                            <option value="a4">A4 (210 x 297 mm)</option>
+                            <option value="14x21">14 x 21 cm</option>
+                            <option value="personalizado">Personalizado</option>
+                        </select>
+                    </div>
+                    
+                    <div id="tamanho-personalizado" class="form-group hidden">
+                        <label>Dimensões personalizadas (mm):</label>
+                        <div class="input-group">
+                            <input type="number" id="largura" placeholder="Largura" min="100" max="500">
+                            <span>x</span>
+                            <input type="number" id="altura" placeholder="Altura" min="100" max="500">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Orientação:</label>
+                        <div class="button-group">
+                            <button type="button" class="option-button active" data-value="retrato">
+                                <i class="fas fa-portrait"></i> Retrato
+                            </button>
+                            <button type="button" class="option-button" data-value="paisagem">
+                                <i class="fas fa-landscape"></i> Paisagem
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quantidade">Quantidade:</label>
+                        <input type="number" id="quantidade" name="quantidade" min="1" value="100">
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="next-btn">Próximo</button>
+                    </div>
+                </section>
+
+                <!-- Seção 2: Tipo de Capa -->
+                <section id="step-2" class="step">
+                    <h2>Tipo de Capa</h2>
+                    <div class="card-options">
+                        <div class="card-option">
+                            <input type="radio" id="capa-comum" name="tipo-capa" value="comum" checked>
+                            <label for="capa-comum">
+                                <div class="card-image">
+                                    <img src="placeholder.svg?height=120&width=180" alt="Capa Comum">
+                                </div>
+                                <div class="card-title">Capa Comum</div>
+                                <div class="card-description">Capa em papel cartão com acabamento simples</div>
+                            </label>
+                        </div>
+                        <div class="card-option">
+                            <input type="radio" id="capa-dura" name="tipo-capa" value="dura">
+                            <label for="capa-dura">
+                                <div class="card-image">
+                                    <img src="placeholder.svg?height=120&width=180" alt="Capa Dura">
+                                </div>
+                                <div class="card-title">Capa Dura</div>
+                                <div class="card-description">Capa rígida com maior durabilidade e acabamento premium</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Adicionais para Capa</h3>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="laminacao-fosca" name="adicionais-capa" value="laminacao-fosca">
+                                <label for="laminacao-fosca">Laminação Fosca</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="laminacao-brilho" name="adicionais-capa" value="laminacao-brilho">
+                                <label for="laminacao-brilho">Laminação Brilho</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="verniz-localizado" name="adicionais-capa" value="verniz-localizado">
+                                <label for="verniz-localizado">Verniz Localizado <span class="tooltip" data-tooltip="Disponível acima de 100 unidades">ⓘ</span></label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="hot-stamping" name="adicionais-capa" value="hot-stamping">
+                                <label for="hot-stamping">Hot Stamping</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="corte-especial" name="adicionais-capa" value="corte-especial">
+                                <label for="corte-especial">Corte Especial</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="prev-btn">Anterior</button>
+                        <button type="button" class="next-btn">Próximo</button>
+                    </div>
+                </section>
+
+                <!-- Seção 3: Tipo de Acabamento -->
+                <section id="step-3" class="step">
+                    <h2>Tipo de Acabamento</h2>
+                    <div class="card-options">
+                        <div class="card-option">
+                            <input type="radio" id="brochura" name="tipo-acabamento" value="brochura" checked>
+                            <label for="brochura">
+                                <div class="card-image">
+                                    <img src="placeholder.svg?height=120&width=180" alt="Brochura">
+                                </div>
+                                <div class="card-title">Brochura</div>
+                                <div class="card-description">Acabamento tradicional com lombada quadrada (mín. 48 páginas)</div>
+                            </label>
+                        </div>
+                        <div class="card-option">
+                            <input type="radio" id="grampo" name="tipo-acabamento" value="grampo">
+                            <label for="grampo">
+                                <div class="card-image">
+                                    <img src="placeholder.svg?height=120&width=180" alt="Grampo">
+                                </div>
+                                <div class="card-title">Grampo</div>
+                                <div class="card-description">Acabamento com grampos (máx. 72 páginas)</div>
+                            </label>
+                        </div>
+                        <div class="card-option">
+                            <input type="radio" id="wire-o" name="tipo-acabamento" value="wire-o">
+                            <label for="wire-o">
+                                <div class="card-image">
+                                    <img src="placeholder.svg?height=120&width=180" alt="Wire-o">
+                                </div>
+                                <div class="card-title">Wire-o</div>
+                                <div class="card-description">Acabamento com espiral metálica</div>
+                            </label>
+                        </div>
+                        <div class="card-option">
+                            <input type="radio" id="espiral" name="tipo-acabamento" value="espiral">
+                            <label for="espiral">
+                                <div class="card-image">
+                                    <img src="placeholder.svg?height=120&width=180" alt="Espiral">
+                                </div>
+                                <div class="card-title">Espiral Plástico</div>
+                                <div class="card-description">Acabamento com espiral plástica</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="prev-btn">Anterior</button>
+                        <button type="button" class="next-btn">Próximo</button>
+                    </div>
+                </section>
+
+                <!-- Seção 4: Miolo (Páginas Internas) -->
+                <section id="step-4" class="step">
+                    <h2>Miolo (Páginas Internas)</h2>
+                    <div class="form-group">
+                        <label for="tipo-papel">Tipo de Papel:</label>
+                        <select id="tipo-papel" name="tipo-papel">
+                            <option value="offset">Offset</option>
+                            <option value="polen">Pólen</option>
+                            <option value="couche">Couchê</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gramatura">Gramatura:</label>
+                        <select id="gramatura" name="gramatura">
+                            <option value="75">75g</option>
+                            <option value="90">90g</option>
+                            <option value="115">115g</option>
+                            <option value="150">150g</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <h3>Impressão</h3>
+                        <div class="input-group">
+                            <label for="paginas-pb">Páginas P&B:</label>
+                            <input type="number" id="paginas-pb" name="paginas-pb" min="0" value="0">
+                            <span class="price-info">R$ <span id="preco-pb">0,08</span> por página</span>
+                        </div>
+                        <div class="input-group">
+                            <label for="paginas-color">Páginas Coloridas:</label>
+                            <input type="number" id="paginas-color" name="paginas-color" min="0" value="0">
+                            <span class="price-info">R$ <span id="preco-color">0,45</span> por página</span>
+                        </div>
+                        <div class="total-pages">
+                            Total de páginas: <span id="total-paginas">0</span>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="prev-btn">Anterior</button>
+                        <button type="button" class="next-btn">Próximo</button>
+                    </div>
+                </section>
+
+                <!-- Seção 5: Serviços Adicionais -->
+                <section id="step-5" class="step">
+                    <h2>Serviços Adicionais</h2>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="diagramacao" name="servicos-adicionais" value="diagramacao">
+                            <label for="diagramacao">Diagramação simples</label>
+                            <span class="price-info">R$ <span id="preco-diagramacao">350,00</span></span>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="criacao-capa" name="servicos-adicionais" value="criacao-capa">
+                            <label for="criacao-capa">Criação de capa</label>
+                            <span class="price-info">R$ <span id="preco-criacao-capa">180,00</span></span>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="prova-impressa" name="servicos-adicionais" value="prova-impressa">
+                            <label for="prova-impressa">Prova impressa (boneco)</label>
+                            <span class="price-info">R$ <span id="preco-prova-impressa">120,00</span></span>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="prev-btn">Anterior</button>
+                        <button type="button" class="next-btn">Próximo</button>
+                    </div>
+                </section>
+
+                <!-- Seção 6: Upload de Arquivos -->
+                <section id="step-6" class="step">
+                    <h2>Upload de Arquivos</h2>
+                    <div class="upload-container">
+                        <div class="upload-box">
+                            <label for="upload-miolo">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Enviar arquivos do miolo (PDF/X-1a)</span>
+                            </label>
+                            <input type="file" id="upload-miolo" accept=".pdf" hidden>
+                            <div class="file-info" id="miolo-file-info">Nenhum arquivo selecionado</div>
+                        </div>
+
+                        <div class="upload-box">
+                            <label for="upload-capa">
+                                <i class="fas fa-file-image"></i>
+                                <span>Enviar arquivos da capa (CDR, AI, PDF/X-1a)</span>
+                            </label>
+                            <input type="file" id="upload-capa" accept=".cdr,.ai,.pdf" hidden>
+                            <div class="file-info" id="capa-file-info">Nenhum arquivo selecionado</div>
+                        </div>
+                    </div>
+
+                    <div class="file-preview" id="file-preview">
+                        <!-- Miniaturas dos arquivos serão exibidas aqui -->
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="prev-btn">Anterior</button>
+                        <button type="button" class="next-btn">Próximo</button>
+                    </div>
+                </section>
+
+                <!-- Seção 7: Endereço e Frete -->
+                <section id="step-7" class="step">
+                    <h2>Endereço e Frete</h2>
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <div class="input-group">
+                            <input type="text" id="cep" name="cep" maxlength="9" placeholder="00000-000">
+                            <button type="button" id="calcular-frete">Calcular Frete</button>
+                        </div>
+                    </div>
+
+                    <div id="endereco-container" class="form-group hidden">
+                        <div class="input-group">
+                            <label for="rua">Rua:</label>
+                            <input type="text" id="rua" name="rua" readonly>
+                        </div>
+                        <div class="input-group">
+                            <label for="numero">Número:</label>
+                            <input type="text" id="numero" name="numero">
+                        </div>
+                        <div class="input-group">
+                            <label for="complemento">Complemento:</label>
+                            <input type="text" id="complemento" name="complemento">
+                        </div>
+                        <div class="input-group">
+                            <label for="bairro">Bairro:</label>
+                            <input type="text" id="bairro" name="bairro" readonly>
+                        </div>
+                        <div class="input-group">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" id="cidade" name="cidade" readonly>
+                        </div>
+                        <div class="input-group">
+                            <label for="estado">Estado:</label>
+                            <input type="text" id="estado" name="estado" readonly>
+                        </div>
+                    </div>
+
+                    <div id="opcoes-frete" class="form-group hidden">
+                        <h3>Opções de Frete</h3>
+                        <div class="frete-options">
+                            <div class="frete-option">
+                                <input type="radio" id="frete-pac" name="opcao-frete" value="pac">
+                                <label for="frete-pac">
+                                    <div class="frete-title">PAC</div>
+                                    <div class="frete-info">
+                                        <span class="frete-prazo">5-8 dias úteis</span>
+                                        <span class="frete-valor">R$ <span id="valor-pac">0,00</span></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="frete-option">
+                                <input type="radio" id="frete-sedex" name="opcao-frete" value="sedex">
+                                <label for="frete-sedex">
+                                    <div class="frete-title">SEDEX</div>
+                                    <div class="frete-info">
+                                        <span class="frete-prazo">2-3 dias úteis</span>
+                                        <span class="frete-valor">R$ <span id="valor-sedex">0,00</span></span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="frete-option">
+                                <input type="radio" id="frete-transportadora" name="opcao-frete" value="transportadora">
+                                <label for="frete-transportadora">
+                                    <div class="frete-title">Transportadora</div>
+                                    <div class="frete-info">
+                                        <span class="frete-prazo">3-5 dias úteis</span>
+                                        <span class="frete-valor">R$ <span id="valor-transportadora">0,00</span></span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="navigation-buttons">
+                        <button type="button" class="prev-btn">Anterior</button>
+                        <button type="button" id="finalizar-orcamento">Gerar Orçamento</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Painel lateral com resumo do orçamento -->
+            <div class="orcamento-sidebar">
+                <div class="orcamento-header">
+                    <h3>Resumo do Orçamento</h3>
+                </div>
+                <div class="orcamento-body">
+                    <div class="orcamento-item">
+                        <span>Formato:</span>
+                        <span id="resumo-formato">A5 (148 x 210 mm)</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Orientação:</span>
+                        <span id="resumo-orientacao">Retrato</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Quantidade:</span>
+                        <span id="resumo-quantidade">100</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Tipo de Capa:</span>
+                        <span id="resumo-capa">Capa Comum</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Acabamento:</span>
+                        <span id="resumo-acabamento">Brochura</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Papel do Miolo:</span>
+                        <span id="resumo-papel">Offset 75g</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Páginas P&B:</span>
+                        <span id="resumo-paginas-pb">0</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Páginas Coloridas:</span>
+                        <span id="resumo-paginas-color">0</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Adicionais:</span>
+                        <span id="resumo-adicionais">-</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Serviços:</span>
+                        <span id="resumo-servicos">-</span>
+                    </div>
+                    <div class="orcamento-item">
+                        <span>Frete:</span>
+                        <span id="resumo-frete">-</span>
+                    </div>
+                </div>
+                <div class="orcamento-footer">
+                    <div class="orcamento-total">
+                        <span>Subtotal:</span>
+                        <span id="resumo-subtotal">R$ 0,00</span>
+                    </div>
+                    <div class="orcamento-total">
+                        <span>Serviços Adicionais:</span>
+                        <span id="resumo-servicos-valor">R$ 0,00</span>
+                    </div>
+                    <div class="orcamento-total">
+                        <span>Frete:</span>
+                        <span id="resumo-frete-valor">R$ 0,00</span>
+                    </div>
+                    <div class="orcamento-total total-final">
+                        <span>Total Final:</span>
+                        <span id="resumo-total">R$ 0,00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modal-orcamento" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Resumo do Pedido</h2>
+            
+            <div class="resumo-pedido">
+                <div class="mockup-livro">
+                    <img src="placeholder.svg?height=300&width=400" alt="Mockup do Livro">
+                </div>
+                
+                <div class="detalhes-pedido">
+                    <h3>Detalhes do Livro</h3>
+                    <ul id="lista-detalhes">
+                        <!-- Detalhes serão preenchidos via JavaScript -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="total-pedido">
+                <h3>Total Final</h3>
+                <div class="valor-total" id="modal-total">R$ 0,00</div>
+            </div>
+            
+            <div class="modal-buttons">
+                <button id="editar-orcamento">Editar Orçamento</button>
+                <button id="confirmar-orcamento">Confirmar e Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

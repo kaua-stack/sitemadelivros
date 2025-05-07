@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo do Pedido - Calculadora de Orçamento de Livros</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .resumo-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            padding: 2rem;
+        }
+        
+        .resumo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .resumo-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .resumo-header p {
+            color: var(--light-text);
+        }
+        
+        .resumo-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .resumo-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .mockup-livro {
+            text-align: center;
+        }
+        
+        .mockup-livro img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .detalhes-pedido h2 {
+            margin-top: 0;
+        }
+        
+        .detalhes-lista {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .detalhes-lista li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .detalhes-lista li:last-child {
+            border-bottom: none;
+        }
+        
+        .total-pedido {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-color);
+        }
+        
+        .total-pedido h2 {
+            margin-top: 0;
+        }
+        
+        .valor-total {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .resumo-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .resumo-buttons button {
+            flex: 1;
+            margin: 0 0.5rem;
+        }
+        
+        #voltar-orcamento {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+        }
+        
+        #voltar-orcamento:hover {
+            background-color: #e5e7eb;
+        }
+        
+        #confirmar-pedido {
+            background-color: var(--success-color);
+            color: white;
+        }
+        
+        #confirmar-pedido:hover {
+            background-color: #059669;
+        }
+        
+        .pedido-numero {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="placeholder.svg?height=60&width=180" alt="Logo da Empresa">
+        </div>
+    </header>
+
+    <main>
+        <div class="resumo-container">
+            <div class="resumo-header">
+                <h1>Resumo do Pedido</h1>
+                <p>Pedido <span class="pedido-numero">#12345</span></p>
+            </div>
+            
+            <div class="resumo-content">
+                <div class="mockup-livro">
+                    <img src="placeholder.svg?height=300&width=400" alt="Mockup do Livro">
+                </div>
+                
+                <div class="detalhes-pedido">
+                    <h2>Detalhes do Livro</h2>
+                    <ul class="detalhes-lista" id="detalhes-lista">
+                        <!-- Detalhes serão preenchidos via JavaScript -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="total-pedido">
+                <h2>Total Final</h2>
+                <div class="valor-total" id="valor-total">R$ 0,00</div>
+            </div>
+            
+            <div class="resumo-buttons">
+                <button id="voltar-orcamento">Editar Orçamento</button>
+                <button id="confirmar-pedido">Confirmar e Enviar</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Recuperar dados do orçamento da sessionStorage
+            const orcamentoData = sessionStorage.getItem('orcamento');
+            
+            if (orcamentoData) {
+                const orcamento = JSON.parse(orcamentoData);
+                preencherResumo(orcamento);
+            } else {
+                // Redirecionar para a página inicial se não houver dados
+                window.location.href = 'index.html';
+            }
+            
+            // Botões
+            document.getElementById('voltar-orcamento').addEventListener('click', function() {
+                window.location.href = 'index.html';
+            });
+            
+            document.getElementById('confirmar-pedido').addEventListener('click', function() {
+                // Simulação de envio do pedido
+                alert('Pedido confirmado com sucesso! Em breve entraremos em contato.');
+                
+                // Limpar dados do orçamento
+                sessionStorage.removeItem('orcamento');
+                
+                // Redirecionar para a página inicial
+                window.location.href = 'index.html';
+            });
+        });
+        
+        function preencherResumo(orcamento) {
+            const listaDetalhes = document.getElementById('detalhes-lista');
+            const valorTotal = document.getElementById('valor-total');
+            
+            // Limpar lista de detalhes
+            listaDetalhes.innerHTML = '';
+            
+            // Preencher detalhes do orçamento
+            const detalhes = [
+                { label: 'Formato', valor: orcamento.formato_nome },
+                { label: 'Orientação', valor: orcamento.orientacao === 'retrato' ? 'Retrato' : 'Paisagem' },
+                { label: 'Quantidade', valor: orcamento.quantidade },
+                { label: 'Tipo de Capa', valor: orcamento.capa_nome },
+                { label: 'Acabamento', valor: orcamento.acabamento_nome },
+                { label: 'Papel do Miolo', valor: orcamento.papel_nome },
+                { label: 'Páginas P&B', valor: orcamento.paginas_pb },
+                { label: 'Páginas Coloridas', valor: orcamento.paginas_color }
+            ];
+            
+            if (orcamento.adicionais_texto && orcamento.adicionais_texto !== '-') {
+                detalhes.push({ label: 'Adicionais', valor: orcamento.adicionais_texto });
+            }
+            
+            if (orcamento.servicos_texto && orcamento.servicos_texto !== '-') {
+                detalhes.push({ label: 'Serviços', valor: orcamento.servicos_texto });
+            }
+            
+            if (orcamento.frete_texto && orcamento.frete_texto !== '-') {
+                detalhes.push({ label: 'Frete', valor: orcamento.frete_texto });
+            }
+            
+            detalhes.forEach(item => {
+                const li = document.createElement('li');
+                li.innerHTML = `<strong>${item.label}:</strong> <span>${item.valor}</span>`;
+                listaDetalhes.appendChild(li);
+            });
+            
+            // Preencher total
+            valorTotal.textContent = orcamento.total;
+        }
+    </script>
+</body>
+</html>
